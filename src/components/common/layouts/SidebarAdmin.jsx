@@ -11,18 +11,18 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
   }, [location.pathname]);
 
   const pages = [
-    { path: "/", icon: DashboardIcon, title: "Home" },
+    { path: "/admin/home", icon: DashboardIcon, title: "Home" },
     // {
-    //   path: "/users",
+    //   path: "/admin/users",
     //   icon: UsersIcon,
     //   title: "Users",
     // },
-    // { path: "/products", icon: ProductsIcon, title: "Products" },
-    // {
-    //   path: "/transactions",
-    //   icon: TransactionIcon,
-    //   title: "Transactions",
-    // },
+    { path: "/admin/products", icon: ProductsIcon, title: "Products" },
+    {
+      path: "/admin/transactions",
+      icon: TransactionIcon,
+      title: "Transactions",
+    },
   ];
 
   function DashboardIcon({ activePage }) {

@@ -4,10 +4,22 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await axios.get("http://localhost:8000/api/products", {
-      // headers: {
-      //   Authorization: `Bearer ${localStorage.getItem("token")}`, // Sesuaikan dengan tokenmu
-      // },
+    const response = await axios.get("http://localhost:8001/api/products", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data.data;
+  }
+);
+
+export const addProduct = createAsyncThunk(
+  "products/addProduct",
+  async (productData) => {
+    const response = await axios.post("http://localhost:8001/api/products", productData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
     return response.data.data;
   }
@@ -33,6 +45,9 @@ const productSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        state.products.push(action.payload);
       });
   },
 });

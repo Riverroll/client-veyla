@@ -323,5 +323,15 @@ export default {
       },
     }),
   },
-  plugins: [],
+  daisyui: {
+    styled: false,
+    themes: false,
+    base: false,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+  },
+  plugins: [require("daisyui")],
+
 };
