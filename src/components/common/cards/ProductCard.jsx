@@ -1,8 +1,15 @@
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../features/cart/cart";
 
 const ProductCard = ({ product }) => {
   const location = useLocation();
   const isAdmin = location.pathname.includes("admin");
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105 hover:shadow-xl">
@@ -24,7 +31,10 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="mt-4 flex space-x-2">
           {!isAdmin && (
-            <button className="bg-teal-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300 transition duration-200">
+            <button
+              onClick={handleAddToCart}
+              className="bg-teal-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300 transition duration-200"
+            >
               Add to Cart
             </button>
           )}
