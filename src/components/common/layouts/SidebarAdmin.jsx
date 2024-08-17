@@ -11,25 +11,25 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
   }, [location.pathname]);
 
   const pages = [
-    { path: "/admin/home", icon: DashboardIcon, title: "Home" },
-    // {
-    //   path: "/admin/users",
-    //   icon: UsersIcon,
-    //   title: "Users",
-    // },
-    { path: "/admin/products", icon: ProductsIcon, title: "Products" },
+    { path: "/", icon: DashboardIcon, title: "Home" },
     {
-      path: "/admin/transactions",
-      icon: TransactionIcon,
-      title: "Transactions",
+      path: "/users",
+      icon: UsersIcon,
+      title: "Users",
     },
+    // { path: "/products", icon: ProductsIcon, title: "Products" },
+    // {
+    //   path: "/transactions",
+    //   icon: TransactionIcon,
+    //   title: "Transactions",
+    // },
   ];
 
   function DashboardIcon({ activePage }) {
     return (
       <svg
         className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
-          activePage === "/admin/home" ? "text-teal-500" : "text-gray-500"
+          activePage === "/home" ? "text-teal-500" : "text-gray-500"
         }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
     return (
       <svg
         className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
-          activePage === "/admin/users" ? "text-teal-500" : "text-gray-500"
+          activePage === "/users" ? "text-teal-500" : "text-gray-500"
         }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
     return (
       <svg
         className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
-          activePage === "/admin/products" ? "text-teal-500" : "text-gray-500"
+          activePage === "/products" ? "text-teal-500" : "text-gray-500"
         }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
@@ -77,9 +77,7 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
     return (
       <svg
         className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
-          activePage === "/admin/transaction"
-            ? "text-teal-500"
-            : "text-gray-500"
+          activePage === "/transaction" ? "text-teal-500" : "text-gray-500"
         }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"

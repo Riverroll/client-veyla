@@ -18,10 +18,9 @@ const Topbar = ({ toggleSidebar }) => {
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    toast.success("Logout success");
     setIsDropdownOpen(false);
-    navigate("/login");
     toast.success("Logout success");
+    navigate("/login");
   };
   return (
     <nav className="relative top-0 z-40 w-full bg-white border-b border-gray-200 ">
@@ -92,7 +91,6 @@ const Topbar = ({ toggleSidebar }) => {
                   <ul className="py-1" role="none">
                     <li>
                       <a
-                        href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100  hover:cursor-pointer"
                         role="menuitem"
                         onClick={handleSignOut}

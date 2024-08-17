@@ -1,7 +1,7 @@
 import { useState } from "react";
 import createValidationSchema from "../../../utils/validationSchema";
 
-const AddModal = ({ isOpen, onClose, onSubmit, fields }) => {
+const AddModal = ({ isOpen, onClose, onSubmit, fields, options }) => {
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {})
   );
@@ -51,14 +51,37 @@ const AddModal = ({ isOpen, onClose, onSubmit, fields }) => {
               <label htmlFor={field.name} className="block text-sm font-medium">
                 {field.label}
               </label>
-              <input
-                type={field.type}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded-md w-full"
-                // required={field.required}
-              />
+              {field.type === "select" ? (
+                <select
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                >
+                  <option value="">Select {field.label}</option>
+                  {options[field.name]?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              ) : field.type === "textarea" ? (
+                <textarea
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                  rows="4"
+                />
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="mt-1 p-2 border border-gray-300 rounded-md w-full"
+                />
+              )}
               {errors[field.name] && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors[field.name]}

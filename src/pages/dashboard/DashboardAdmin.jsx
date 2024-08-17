@@ -9,8 +9,8 @@ function DashboardAdmin() {
       <main className="flex flex-col gap-4 ">
         <div className="p-4">
           <DashboardBanner
-            title="Welcome back admin!"
-            message="Hello! We're glad to have you here. Explore our wide range of products and manage your orders easily. If you need any help, feel free to reach out to our support team."
+            title="Welcome back, Admin!"
+            message="We're excited to see you again. Dive into your dashboard to manage users, track orders, and oversee product inventory. If you have any questions or need assistance, our support team is here to help."
           />
         </div>
         <div>

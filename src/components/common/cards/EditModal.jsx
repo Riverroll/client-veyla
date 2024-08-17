@@ -57,16 +57,44 @@ const EditModal = ({ isOpen, onClose, onSubmit, initialData, fields }) => {
               <label htmlFor={field.name} className="block text-sm font-medium">
                 {field.label}
               </label>
-              <input
-                type={field.type}
-                name={field.name}
-                value={formData[field.name] || ""}
-                onChange={handleChange}
-                placeholder={field.label}
-                className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
-                  errors[field.name] ? "border-red-500" : ""
-                }`}
-              />
+              {field.type === "select" ? (
+                <select
+                  name={field.name}
+                  value={formData[field.name] || ""}
+                  onChange={handleChange}
+                  className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
+                    errors[field.name] ? "border-red-500" : ""
+                  }`}
+                >
+                  {field.options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              ) : field.type === "textarea" ? (
+                <textarea
+                  name={field.name}
+                  value={formData[field.name] || ""}
+                  onChange={handleChange}
+                  placeholder={field.label}
+                  className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
+                    errors[field.name] ? "border-red-500" : ""
+                  }`}
+                  rows="4"
+                />
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name] || ""}
+                  onChange={handleChange}
+                  placeholder={field.label}
+                  className={`mt-1 p-2 border border-gray-300 rounded-md w-full ${
+                    errors[field.name] ? "border-red-500" : ""
+                  }`}
+                />
+              )}
               {errors[field.name] && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors[field.name]}

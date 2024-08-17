@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const response = await axios.get("http://localhost:8001/api/products", {
+    const response = await axios.get("http://localhost:8000/api/products", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -16,11 +16,15 @@ export const fetchProducts = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   "products/addProduct",
   async (productData) => {
-    const response = await axios.post("http://localhost:8001/api/products", productData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await axios.post(
+      "http://localhost:8000/api/products",
+      productData,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     return response.data.data;
   }
 );

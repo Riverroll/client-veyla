@@ -54,7 +54,7 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
         {/* Edit Button */}
         <button
           onClick={() => onEdit(params.row)}
-          className="flex items-center justify-center bg-brand-500 text-white px-3 py-2 rounded hover:bg-brand-600 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex items-center justify-center bg-brand-500 text-white px-2 pl-3 py-2 rounded-full hover:bg-brand-600 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400"
           title="Edit"
         >
           <FaEdit className="text-lg" />
@@ -62,7 +62,7 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
         {/* Delete Button */}
         <button
           onClick={() => onDelete(params.row)}
-          className="flex items-center justify-center bg-red-500 text-white px-3 py-2 rounded hover:bg-red-600 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-400"
+          className="flex items-center justify-center bg-red-500 text-white px-2 py-2 rounded-full hover:bg-red-600 transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-400"
           title="Delete"
         >
           <FaTrash className="text-lg" />
