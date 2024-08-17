@@ -6,7 +6,9 @@ export const fetchCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("http://localhost:8000/api/categories", {
-        // headers: { Authorization: `Bearer ${thunkAPI.getState().auth.token}` },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
       return response.data.data;
     } catch (error) {
