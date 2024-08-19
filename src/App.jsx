@@ -8,6 +8,7 @@ import DashboardAdmin from "./pages/dashboard/DashboardAdmin";
 import LoginAdmin from "./pages/auth/LoginAdmin";
 import UsersAdmin from "./pages/users/UsersAdmin";
 import "./App.css";
+import ReservationAdmin from "./pages/reservations/ReservationAdmin";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.User);
@@ -45,6 +46,14 @@ function App() {
           element={
             <PrivateRoute>
               <UsersAdmin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            <PrivateRoute>
+              <ReservationAdmin />
             </PrivateRoute>
           }
         />

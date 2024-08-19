@@ -17,7 +17,7 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
       icon: UsersIcon,
       title: "Users",
     },
-    // { path: "/products", icon: ProductsIcon, title: "Products" },
+    { path: "/reservations", icon: ReservationsIcon, title: "Reservations" },
     // {
     //   path: "/transactions",
     //   icon: TransactionIcon,
@@ -57,11 +57,11 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
     );
   }
 
-  function ProductsIcon({ activePage }) {
+  function ReservationsIcon({ activePage }) {
     return (
       <svg
         className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
-          activePage === "/products" ? "text-teal-500" : "text-gray-500"
+          activePage === "/reservations" ? "text-teal-500" : "text-gray-500"
         }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
