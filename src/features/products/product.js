@@ -5,7 +5,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async ({ category, search }, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:8000/api/products", {
+      const response = await axios.get("http://localhost:8001/api/products", {
         params: {
           categoryId: category || "",
           search: search || "",

@@ -10,7 +10,7 @@ const useFetchCategories = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/categories",
+          "http://localhost:8001/api/categories",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
