@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CartPopup from "../../../pages/dashboard/sections/Cart";
 
 const Topbar = ({ toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -57,6 +58,7 @@ const Topbar = ({ toggleSidebar }) => {
           </div>
 
           <div className="flex items-center relative">
+            <CartPopup/>
             <div className="flex items-center ms-3">
               <button
                 type="button"
