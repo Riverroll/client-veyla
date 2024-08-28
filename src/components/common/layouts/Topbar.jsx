@@ -1,17 +1,19 @@
 import { useState } from "react";
-import logo from "../../../assets/logo/icon-dark.png";
-// import logo from "../../assets/logo/sms-logo.jpeg";
-import ava from "../../../assets/profile/ava.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CartPopup from "../../../pages/dashboard/sections/Cart";
+import CartPopup from "../../../pages/dashboard/sections/CartPopup";
+import CheckoutModal from "../../../pages/dashboard/sections/CheckoutModal";
+import logo from "../../../assets/logo/icon-dark.png";
+import ava from "../../../assets/profile/ava.png";
 
 const Topbar = ({ toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.user.User);
+  const userData = useSelector((state) => state.user.User) || {};
+  const tables = useSelector((state) => state.tables?.list) || [];
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -23,10 +25,16 @@ const Topbar = ({ toggleSidebar }) => {
     toast.success("Logout success");
     navigate("/login");
   };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <nav className="relative top-0 z-40 w-full bg-white border-b border-gray-200 ">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
+          {/* Left side */}
           <div className="flex items-center justify-start rtl:justify-end">
             <button
               type="button"
@@ -57,8 +65,14 @@ const Topbar = ({ toggleSidebar }) => {
             </a>
           </div>
 
+          {/* Right side */}
           <div className="flex items-center relative">
-            <CartPopup/>
+            <CartPopup />
+            <CheckoutModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        rows={tables}
+      />
             <div className="flex items-center ms-3">
               <button
                 type="button"
