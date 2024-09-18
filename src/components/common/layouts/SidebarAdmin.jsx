@@ -18,11 +18,11 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
       title: "Users",
     },
     { path: "/reservations", icon: ReservationsIcon, title: "Reservations" },
-    // {
-    //   path: "/transactions",
-    //   icon: TransactionIcon,
-    //   title: "Transactions",
-    // },
+    {
+      path: "/transactions",
+      icon: TransactionIcon,
+      title: "Transactions",
+    },
   ];
 
   function DashboardIcon({ activePage }) {
