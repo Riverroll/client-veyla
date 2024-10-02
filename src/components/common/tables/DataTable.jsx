@@ -74,17 +74,17 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
         }
       : null;
 
-  const getNestedValue = (object, path) => {
-    return path.split(".").reduce((o, p) => (o ? o[p] : undefined), object);
-  };
+  // const getNestedValue = (object, path) => {
+  //   return path.split(".").reduce((o, p) => (o ? o[p] : undefined), object);
+  // };
 
-  const adjustedColumns = columns.map((col) => ({
-    ...col,
-    renderCell: (params) => {
-      const value = getNestedValue(params.row, col.field);
-      return value !== undefined ? value : "";
-    },
-  }));
+  // const adjustedColumns = columns.map((col) => ({
+  //   ...col,
+  //   renderCell: (params) => {
+  //     const value = getNestedValue(params.row, col.field);
+  //     return value !== undefined ? value : "";
+  //   },
+  // }));
 
   return (
     <div className="flex flex-col w-full">
@@ -106,9 +106,7 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
         <DataGrid
           autoHeight
           rows={pageRows}
-          columns={
-            actionColumn ? [...adjustedColumns, actionColumn] : adjustedColumns
-          }
+          columns={actionColumn ? [...columns, actionColumn] : columns}
           pageSize={pageSize}
           disableSelectionOnClick
           apiRef={apiRef}
