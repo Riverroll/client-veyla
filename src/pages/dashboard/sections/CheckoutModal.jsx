@@ -5,7 +5,7 @@ import QRCode from "react-qr-code";
 import axiosInstance from "../../../utils/axiosInstance";
 import { toast } from "react-toastify";
 
-const CheckoutModal = ({ isOpen, onClose }) => {
+const CheckoutModal = ({ isOpen, onClose, total }) => {
   const [step, setStep] = useState(1);
   const [selectedTable, setSelectedTable] = useState("");
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
@@ -15,7 +15,6 @@ const CheckoutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart?.items) || [];
-  const total = useSelector((state) => state.cart?.total) || 0;
   const userId = useSelector((state) => state.user.User.id) || 1;
 
   const fetchTables = async () => {
@@ -72,13 +71,11 @@ const CheckoutModal = ({ isOpen, onClose }) => {
 
       if (response.status === 200 || response.status === 201) {
         toast.success(response.data.message || "Pesanan berhasil dibuat!");
-        // setTimeout(() => {
         dispatch(clearCart());
         onClose();
         setStep(1);
         setSelectedTable("");
         setIsPaymentComplete(false);
-        // }, 2000);
       } else {
         console.error("Failed to create order:", response.statusText);
         toast.error(response.data.message || "Gagal membuat pesanan.");
@@ -116,6 +113,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
               ))}
             </ul>
 
+            {/* Display total passed from props */}
             <p className="text-xl font-bold mb-4">
               Total: IDR{total.toFixed(2)}
             </p>
@@ -179,7 +177,7 @@ const CheckoutModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-<div className="flex justify-between mt-6">
+        <div className="flex justify-between mt-6">
           {step === 1 ? (
             <>
               <button
