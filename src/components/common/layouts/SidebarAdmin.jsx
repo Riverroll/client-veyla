@@ -23,6 +23,11 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
       icon: TransactionIcon,
       title: "Transactions",
     },
+    {
+      path: "/products",
+      icon: ProductsIcon,
+      title: "Products",
+    },
   ];
 
   function DashboardIcon({ activePage }) {
@@ -85,6 +90,22 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
         viewBox="0 0 24 24"
       >
         <path d="M11 22v-2H5c-1.11 0-1.99-.89-1.99-2L3 5c0-1.11.89-2 2-2h10c1.11 0 2 .89 2 2v13c0 1.11-.89 2-2 2h-6v2h4c1.11 0 2-.89 2-2V5h2v15h-8zM5 5v13h6V5H5z" />
+      </svg>
+    );
+  }
+
+  function ProductsIcon({ activePage }) {
+    return (
+      <svg
+        className={`w-5 h-5 transition duration-75  group-hover:text-teal-500  ${
+          activePage === "/products" ? "text-teal-500" : "text-gray-500"
+        }`}
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm0 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm10-2c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zm0 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM6.16 13.41c-.13.37.08.77.45.91l1.28.35c.32.09.66-.08.77-.4l.75-2.23 8.32 2.33c.24.07.51.01.69-.18.18-.2.26-.48.2-.75l-1.15-4.7a1 1 0 0 0-.98-.75H7.36l-.79-3.56c-.1-.44-.49-.76-.94-.76H2v2h2.41l1.96 8.84-.82 2.45zm1.28-2.23L7.94 9h9.57l.86 3.52-9.93-2.34z" />
       </svg>
     );
   }

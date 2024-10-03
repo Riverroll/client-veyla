@@ -10,6 +10,7 @@ import UsersAdmin from "./pages/users/UsersAdmin";
 import "./App.css";
 import ReservationAdmin from "./pages/reservations/ReservationAdmin";
 import TransactionsAdmin from "./pages/transactions/TransactionsAdmin";
+import ProductsAdmin from "./pages/products/ProductsAdmin";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.User);
@@ -63,6 +64,14 @@ function App() {
           element={
             <PrivateRoute>
               <TransactionsAdmin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <PrivateRoute>
+              <ProductsAdmin />
             </PrivateRoute>
           }
         />
