@@ -131,8 +131,8 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
           <div className="flex justify-center items-center pt-10 md:text-lg">
             {isOpen ? (
               <>
-                <p>Supported by</p>
-                <img src={codenito} className="h-8 me-3" alt="Company Logo" />
+                <p>D'Restiorante</p>
+                {/* <img src={codenito} className="h-8 me-3" alt="Company Logo" /> */}
               </>
             ) : (
               <img src={codenito} className="h-8" alt="Company Logo" />
