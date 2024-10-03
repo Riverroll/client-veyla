@@ -92,8 +92,14 @@ const CheckoutModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-auto">
-      <div className="bg-white p-6 rounded-lg max-w-4xl w-full m-4">
+    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white p-6 rounded-lg max-w-4xl w-full m-4 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+        >
+          ✕
+        </button>
         <h2 className="text-2xl font-bold mb-4">
           {step === 2 ? "Payment Summary" : "Checkout"}
         </h2>
@@ -173,18 +179,18 @@ const CheckoutModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        <div className="flex justify-between mt-6">
+<div className="flex justify-between mt-6">
           {step === 1 ? (
             <>
               <button
                 onClick={onClose}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleProceed}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
                 disabled={!selectedTable}
               >
                 Next
@@ -194,13 +200,13 @@ const CheckoutModal = ({ isOpen, onClose }) => {
             <>
               <button
                 onClick={handleBack}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition-colors"
               >
                 Back
               </button>
               <button
                 onClick={handlePaymentComplete}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
               >
                 {isPaymentComplete ? "Payment Successful!" : "Simulate Payment"}
               </button>

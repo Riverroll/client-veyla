@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, removeFromCart, clearCart } from '../../../../src/features/cart/cart';
 import { ShoppingCart } from 'lucide-react';
 import CheckoutModal from './CheckoutModal';
 
-const CartPopup = () => {
+const CartPopup = ({ setIsPopupOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart?.items ?? []);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsPopupOpen(isOpen || isCheckoutModalOpen);
+  }, [isOpen, isCheckoutModalOpen, setIsPopupOpen]);
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));

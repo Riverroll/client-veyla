@@ -1,8 +1,8 @@
 const DashboardBanner = ({ title, message }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md ">
-      <h2 className="text-xl font-semibold mb-2">{title}</h2>
-      <p className="text-gray-700">{message}</p>
+    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4 rounded-lg shadow-md ">
+      <h2 className="text-xl font-semibold mb-2 text-white">{title}</h2>
+      <p className="text-white">{message}</p>
     </div>
   );
 };
