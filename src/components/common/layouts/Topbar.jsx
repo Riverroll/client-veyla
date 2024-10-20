@@ -9,12 +9,12 @@ import logo from "../../../assets/logo/icon-dark.png";
 import ava from "../../../assets/profile/ava.png";
 
 const Topbar = ({ toggleSidebar }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const navigate = useNavigate();
-  const userData = useSelector((state) => state.user.User) || {};
-  const tables = useSelector((state) => state.tables?.list) || [];
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State untuk status dropdown pengguna
+  const [isModalOpen, setIsModalOpen] = useState(false); // State untuk status modal checkout
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State untuk status pop-up keranjang
+  const navigate = useNavigate(); // Inisialisasi hook navigate
+  const userData = useSelector((state) => state.user.User) || {}; // Mengambil data pengguna dari Redux
+  const tables = useSelector((state) => state.tables?.list) || []; // Mengambil daftar tabel dari Redux
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -31,19 +31,22 @@ const Topbar = ({ toggleSidebar }) => {
 
   useEffect(() => {
     if (isDimmed) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     }
     return () => {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     };
   }, [isDimmed]);
 
   return (
     <>
       {isDimmed && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" style={{ pointerEvents: 'none' }} />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          style={{ pointerEvents: "none" }}
+        />
       )}
       <nav className="relative top-0 z-50 w-full bg-white border-b border-gray-200">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">

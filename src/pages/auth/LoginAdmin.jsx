@@ -9,22 +9,30 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../features/users/user";
 
 function LoginAdmin() {
+  // Menggunakan kustom hook untuk mendapatkan state form dan validasi
   const { email, setEmail, password, setPassword, errors, validate } =
     useLoginForm();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Mendapatkan fungsi navigasi
+  const dispatch = useDispatch(); // Mendapatkan fungsi dispatch dari Redux
 
+  // Fungsi untuk menangani pengiriman form
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (await validate()) {
       try {
+        // Mengirim permintaan POST untuk login
         const response = await axiosInstance.post("/auth/login", {
           email,
           password,
         });
 
+        // Menampilkan pesan sukses
         toast.success("Login successful");
+
+        // Menyimpan token ke localStorage
         localStorage.setItem("token", response.data.data.token);
+
+        // Mengatur pengguna di Redux store
         dispatch(setUser(response.data.data.user));
         navigate("/");
       } catch (error) {

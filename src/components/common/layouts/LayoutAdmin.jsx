@@ -3,8 +3,10 @@ import Topbar from "./Topbar";
 import SidebarAdmin from "./SidebarAdmin";
 
 const LayoutAdmin = ({ children }) => {
+  // State untuk mengelola apakah sidebar terbuka atau tidak
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+  // Fungsi untuk mengubah status sidebar (terbuka/tutup)
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };

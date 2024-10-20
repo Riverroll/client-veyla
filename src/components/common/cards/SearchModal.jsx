@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const SearchModal = ({ isOpen, onClose, onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan istilah pencarian
 
+  // Jika modal tidak terbuka, kembalikan null (tidak merender apa-apa)
   if (!isOpen) return null;
 
+  // Fungsi untuk menangani pengiriman form
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm);
+    e.preventDefault(); // Mencegah perilaku default dari form (reloading)
+    onSearch(searchTerm); // Memanggil fungsi onSearch dengan istilah pencarian
+    setSearchTerm(""); // Mengosongkan input setelah pencarian
   };
 
   return (

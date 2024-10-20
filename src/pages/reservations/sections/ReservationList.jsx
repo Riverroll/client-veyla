@@ -10,13 +10,13 @@ import ReserveModal from "../components/ReserveModal";
 import MakeAvailableModal from "../components/MakeAvailableModal";
 
 const ReservationList = () => {
-  const { tables, loading, error, refetch } = useTables();
-  const [selectedTable, setSelectedTable] = useState(null);
-  const [isAddModalOpen, setAddModalOpen] = useState(false);
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [isReserveModalOpen, setReserveModalOpen] = useState(false);
-  const [isMakeAvailableModalOpen, setMakeAvailableModalOpen] = useState(false);
+  const { tables, loading, error, refetch } = useTables(); // Mengambil data tabel, status loading, error, dan fungsi refetch
+  const [selectedTable, setSelectedTable] = useState(null); // State untuk tabel yang dipilih
+  const [isAddModalOpen, setAddModalOpen] = useState(false); // State untuk kontrol modal tambah tabel
+  const [isEditModalOpen, setEditModalOpen] = useState(false); // State untuk kontrol modal edit tabel
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false); // State untuk kontrol modal hapus tabel
+  const [isReserveModalOpen, setReserveModalOpen] = useState(false); // State untuk kontrol modal reservasi tabel
+  const [isMakeAvailableModalOpen, setMakeAvailableModalOpen] = useState(false); // State untuk kontrol modal membuat tabel tersedia
 
   const handleAddTable = async (newTable) => {
     try {

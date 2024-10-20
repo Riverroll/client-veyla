@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const FilterModal = ({ isOpen, onClose, onFilter, categories }) => {
-  const [category, setCategory] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  // Menggunakan useState untuk menyimpan state kategori, harga minimum, dan harga maksimum
+  const [category, setCategory] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
+  // Jika modal tidak terbuka, kembalikan null
   if (!isOpen) return null;
 
+  // Fungsi untuk menangani pengiriman form
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onFilter({ category, minPrice: Number(minPrice), maxPrice: Number(maxPrice) });
+    e.preventDefault(); // Mencegah reload halaman
+    // Mengirim filter yang dipilih ke fungsi onFilter
+    onFilter({
+      category,
+      minPrice: Number(minPrice),
+      maxPrice: Number(maxPrice),
+    });
   };
 
   return (
@@ -18,7 +26,9 @@ const FilterModal = ({ isOpen, onClose, onFilter, categories }) => {
         <h2 className="text-2xl font-bold mb-4">Filter Products</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Category
+            </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -26,12 +36,16 @@ const FilterModal = ({ isOpen, onClose, onFilter, categories }) => {
             >
               <option value="">All Categories</option>
               {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
               ))}
             </select>
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Min Price</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Min Price
+            </label>
             <input
               type="number"
               value={minPrice}
@@ -40,7 +54,9 @@ const FilterModal = ({ isOpen, onClose, onFilter, categories }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Max Price</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Max Price
+            </label>
             <input
               type="number"
               value={maxPrice}

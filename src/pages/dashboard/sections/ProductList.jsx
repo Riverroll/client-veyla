@@ -10,32 +10,37 @@ const useQuery = () => {
 };
 
 function ProductList() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Mendapatkan fungsi dispatch dari Redux
   const { products, productStatus, error } = useSelector(
+    // Mengambil produk, status, dan error dari state Redux
     (state) => state.products
   );
-  const { categories, status: categoriesStatus } = useCategories();
+  const { categories, status: categoriesStatus } = useCategories(); // Mengambil kategori dan status dari hook useCategories
 
-  const query = useQuery();
-  const initialCategoryId = query.get("categoryId") || "";
+  const query = useQuery(); // Mendapatkan parameter query dari URL
+  const initialCategoryId = query.get("categoryId") || ""; // Mengambil categoryId dari query atau mengatur ke string kosong
 
-  const [selectedCategory, setSelectedCategory] = useState(initialCategoryId);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(initialCategoryId); // State untuk menyimpan kategori yang dipilih
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan istilah pencarian
 
+  // Mengambil produk setiap kali selectedCategory atau searchTerm berubah
   useEffect(() => {
     dispatch(fetchProducts({ category: selectedCategory, search: searchTerm }));
   }, [selectedCategory, searchTerm, dispatch]);
 
+  // Mengatur selectedCategory berdasarkan initialCategoryId
   useEffect(() => {
     if (initialCategoryId) {
       setSelectedCategory(initialCategoryId);
     }
   }, [initialCategoryId]);
 
+  // Menampilkan loading saat produk sedang diambil
   if (productStatus === "loading") {
     return <div className="text-center text-lg">Loading...</div>;
   }
 
+  // Menampilkan pesan error jika pengambilan produk gagal
   if (productStatus === "failed") {
     return <div className="text-center text-red-500">Error: {error}</div>;
   }

@@ -6,14 +6,15 @@ import { Pagination } from "@mui/material";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
-  const [filterText, setFilterText] = useState("");
-  const [includeOutliers, setIncludeOutliers] = useState(true);
-  const apiRef = useGridApiRef();
+  const [filterText, setFilterText] = useState(""); // State untuk input pencarian
+  const [includeOutliers, setIncludeOutliers] = useState(true); // State untuk menyertakan outlier (tidak digunakan saat ini)
+  const apiRef = useGridApiRef(); // Referensi untuk API DataGrid
 
   const handleFilterChange = (event) => {
-    setFilterText(event.target.value);
+    setFilterText(event.target.value); // Memperbarui teks filter saat input berubah
   };
 
+  // Menyaring baris berdasarkan input pencarian
   const filteredRows = Array.isArray(rows)
     ? rows.filter((row) =>
         Object.keys(row).some(
@@ -34,6 +35,7 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
     includeOutliers,
   };
 
+  // Setup paginasi
   const pageSize = 10;
   const pageStartIndex = (page - 1) * pageSize;
   const pageEndIndex = pageStartIndex + pageSize;
@@ -45,6 +47,7 @@ const DataTable = ({ rows, columns, loading, onEdit, onDelete }) => {
     apiRef.current.autosizeColumns(autosizeOptions);
   }, [loading]);
 
+  // Mendefinisikan kolom aksi jika props onEdit dan onDelete disediakan
   const actionColumn =
     onEdit && onDelete
       ? {

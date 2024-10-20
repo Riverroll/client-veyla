@@ -10,14 +10,17 @@ import EditModal from "../../../components/common/cards/EditModal";
 import DeleteModal from "../../../components/common/cards/DeleteModal";
 
 const ProductList = () => {
+  // Mengambil produk dan kategori menggunakan hook kustom
   const { products, loading, error, refetch } = useFetchProducts();
   const { categories } = useCategories();
 
+  // Mengelola state untuk modal dan produk yang dipilih
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
+  // Handler untuk menambahkan produk baru
   const handleAddProduct = async (newProduct) => {
     try {
       const response = await axiosInstance.post("/products", newProduct, {
@@ -32,6 +35,7 @@ const ProductList = () => {
     }
   };
 
+  // Handler untuk mengedit dan menghapus produk
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setEditModalOpen(true);
@@ -42,6 +46,7 @@ const ProductList = () => {
     setDeleteModalOpen(true);
   };
 
+  // Handler untuk mengirimkan produk yang telah diedit
   const handleEditSubmit = async (updatedProduct) => {
     try {
       const response = await axiosInstance.put(
@@ -60,6 +65,7 @@ const ProductList = () => {
     }
   };
 
+  // Handler untuk mengonfirmasi penghapusan produk
   const handleDeleteConfirm = async () => {
     try {
       const response = await axiosInstance.delete(
@@ -77,6 +83,7 @@ const ProductList = () => {
     }
   };
 
+  // Mendefinisikan kolom untuk tabel data
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "product_name", headerName: "Name", width: 200 },
@@ -109,6 +116,7 @@ const ProductList = () => {
     },
   ];
 
+  // Mengelola keadaan kesalahan
   if (error) {
     return <div>Error: {error}</div>;
   }

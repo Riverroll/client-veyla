@@ -6,8 +6,9 @@ export const UserSlice = createSlice({
     User: [],
   },
   reducers: {
+    // Reducer untuk mengatur data pengguna
     setUser: (state, action) => {
-      state.User = action.payload;
+      state.User = action.payload; // Mengupdate state User dengan payload dari action
     },
   },
 });

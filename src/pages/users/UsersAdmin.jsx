@@ -12,7 +12,7 @@ function UsersAdmin() {
           />
         </div>
         <div className="px-4">
-          <UserList />
+          <UserList /> {/* Menampilkan daftar pengguna */}
         </div>
       </main>
     </Layout>

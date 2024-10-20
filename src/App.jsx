@@ -12,25 +12,27 @@ import ReservationAdmin from "./pages/reservations/ReservationAdmin";
 import TransactionsAdmin from "./pages/transactions/TransactionsAdmin";
 import ProductsAdmin from "./pages/products/ProductsAdmin";
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.User);
+  const dispatch = useDispatch(); // Inisialisasi fungsi dispatch untuk mengirim aksi Redux
+  const user = useSelector((state) => state.user.User); // Mengambil data pengguna dari Redux store
 
+  // Mengambil data pengguna saat komponen dimuat
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token"); // Mengambil token dari local storage
 
+    // Jika token ada dan data pengguna belum diambil
     if (token && user.length === 0) {
       const fetchUser = async () => {
         try {
-          const userData = await fetchUserDetail(token);
-          dispatch(setUser(userData.data));
+          const userData = await fetchUserDetail(token); // Memanggil API untuk mengambil data pengguna
+          dispatch(setUser(userData.data)); // Menyimpan data pengguna di Redux store
         } catch (error) {
           console.error("Error fetching user data:", error.message);
         }
       };
 
-      fetchUser();
+      fetchUser(); // Memanggil fungsi untuk mengambil data pengguna
     }
-  }, [dispatch, user]);
+  }, [dispatch, user]); // Efek dijalankan ulang jika nilai dispatch atau user berubah
 
   return (
     <>
@@ -39,7 +41,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <DashboardAdmin />
+              <DashboardAdmin /> {/* Halaman DashboardAdmin untuk rute utama */}
             </PrivateRoute>
           }
         />
@@ -47,7 +49,7 @@ function App() {
           path="/users"
           element={
             <PrivateRoute>
-              <UsersAdmin />
+              <UsersAdmin /> {/* Halaman UsersAdmin untuk manajemen pengguna */}
             </PrivateRoute>
           }
         />
@@ -55,7 +57,8 @@ function App() {
           path="/reservations"
           element={
             <PrivateRoute>
-              <ReservationAdmin />
+              <ReservationAdmin />{" "}
+              {/* Halaman ReservationAdmin untuk manajemen reservasi */}
             </PrivateRoute>
           }
         />
@@ -63,7 +66,8 @@ function App() {
           path="/transactions"
           element={
             <PrivateRoute>
-              <TransactionsAdmin />
+              <TransactionsAdmin />{" "}
+              {/* Halaman TransactionsAdmin untuk manajemen transaksi */}
             </PrivateRoute>
           }
         />
@@ -71,7 +75,8 @@ function App() {
           path="/products"
           element={
             <PrivateRoute>
-              <ProductsAdmin />
+              <ProductsAdmin />{" "}
+              {/* Halaman ProductsAdmin untuk manajemen produk */}
             </PrivateRoute>
           }
         />

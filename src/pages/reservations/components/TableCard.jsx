@@ -1,6 +1,6 @@
 function TableCard({ table, onEdit, onDelete, onReserve, onMakeAvailable }) {
-  const { tableName, reservation } = table;
-  const status = reservation ? "Reserved" : "Available";
+  const { tableName, reservation } = table; // Mengambil nama tabel dan reservasi dari objek tabel
+  const status = reservation ? "Reserved" : "Available"; // Menentukan status tabel (Tersedia atau Dipesan)
 
   return (
     <div className="bg-white shadow-md rounded-md p-4">
