@@ -13,7 +13,7 @@ function ProductsAdmin() {
           />
         </div>
         <div className="px-4">
-          <ProductList />
+          <ProductList /> {/* Menampilkan daftar produk */}
         </div>
       </main>
     </Layout>

@@ -2,12 +2,13 @@ import { useState } from "react";
 import createValidationSchema from "../../../utils/validationSchema";
 
 const ReserveModal = ({ isOpen, onClose, onSubmit, fields }) => {
+  // Mendefinisikan state untuk data form dan error
   const [formData, setFormData] = useState(
     fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {})
   );
   const [errors, setErrors] = useState({});
 
-  const validationSchema = createValidationSchema(fields);
+  const validationSchema = createValidationSchema(fields); // Membuat skema validasi berdasarkan fields
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +19,7 @@ const ReserveModal = ({ isOpen, onClose, onSubmit, fields }) => {
     e.preventDefault();
     try {
       await validationSchema.validate(formData, { abortEarly: false });
-      onSubmit(formData);
+      onSubmit(formData); // Memanggil fungsi onSubmit dengan data form
       setFormData(
         fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {})
       );
@@ -35,7 +36,7 @@ const ReserveModal = ({ isOpen, onClose, onSubmit, fields }) => {
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) return null; // Tidak merender modal jika tidak dalam keadaan terbuka
 
   return (
     <div

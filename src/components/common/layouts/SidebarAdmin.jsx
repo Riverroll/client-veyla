@@ -3,13 +3,16 @@ import { Link, useLocation } from "react-router-dom";
 import codenito from "../../../assets/logo/icon-dark.png";
 
 const SidebarAdmin = ({ isOpen, onClose }) => {
+  // Mengambil lokasi saat ini dari router
   const location = useLocation();
   const [activePage, setActivePage] = useState("");
 
+  // Efek yang akan dijalankan setiap kali lokasi berubah
   useEffect(() => {
-    setActivePage(location.pathname);
+    setActivePage(location.pathname); // Mengatur activePage dengan path saat ini
   }, [location.pathname]);
 
+  // Mendefinisikan halaman-halaman yang ada di sidebar
   const pages = [
     { path: "/", icon: DashboardIcon, title: "Home" },
     {
@@ -110,6 +113,7 @@ const SidebarAdmin = ({ isOpen, onClose }) => {
     );
   }
 
+  // Fungsi untuk menangani klik pada halaman
   const handlePageClick = (pagePath) => {
     setActivePage(pagePath);
     onClose();

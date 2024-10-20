@@ -12,7 +12,7 @@ function ReservationAdmin() {
           />
         </div>
         <div className="px-4">
-          <ReservationList />
+          <ReservationList /> {/* Merender komponen ReservationList */}
         </div>
       </main>
     </Layout>

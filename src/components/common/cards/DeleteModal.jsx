@@ -1,4 +1,5 @@
 const DeleteModal = ({ isOpen, onClose, onConfirm, itemName }) => {
+  // Jika modal tidak terbuka, kembalikan null untuk tidak menampilkan apa pun
   if (!isOpen) return null;
 
   return (

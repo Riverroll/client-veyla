@@ -11,10 +11,9 @@ function DashboardAdmin() {
             title="Welcome back, Admin!"
             message="We're excited to see you again. Dive into your dashboard to manage users, track orders, and oversee product inventory. If you have any questions or need assistance, our support team is here to help."
           />
-          
         </div>
         <div>
-          <ProductList />
+          <ProductList /> {/* Menampilkan daftar produk yang dikelola admin */}
         </div>
       </main>
     </Layout>

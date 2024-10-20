@@ -8,19 +8,23 @@ import AddModal from "../../../components/common/cards/AddModal";
 import { toast } from "react-toastify";
 
 const UserList = () => {
+  // Mengambil data pengguna dan status loading/error dari hook
   const { users, loading, error, refetch } = useFetchUsers();
+
+  // State untuk pengguna yang dipilih dan status modal
   const [selectedUser, setSelectedUser] = useState(null);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
+  // Fungsi untuk menambah pengguna
   const handleAddUser = async (newUser) => {
     try {
       const response = await axiosInstance.post("/auth/register", newUser, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      refetch();
-      setAddModalOpen(false);
+      refetch(); // Memanggil ulang data pengguna
+      setAddModalOpen(false); // Menutup modal tambah pengguna
       toast.success(response.data.message);
     } catch (error) {
       console.error("Failed to add user:", error);
@@ -28,16 +32,19 @@ const UserList = () => {
     }
   };
 
+  // Fungsi untuk membuka modal edit
   const handleEdit = (user) => {
     setSelectedUser(user);
     setEditModalOpen(true);
   };
 
+  // Fungsi untuk membuka modal delete
   const handleDelete = (user) => {
     setSelectedUser(user);
     setDeleteModalOpen(true);
   };
 
+  // Fungsi untuk mengupdate pengguna
   const handleEditSubmit = async (updatedUser) => {
     try {
       const response = await axiosInstance.put(
@@ -47,8 +54,8 @@ const UserList = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
-      refetch();
-      setEditModalOpen(false);
+      refetch(); // Memanggil ulang data pengguna
+      setEditModalOpen(false); // Menutup modal edit pengguna
       toast.success(response.data.message);
     } catch (error) {
       console.error("Failed to update user:", error);
@@ -56,6 +63,7 @@ const UserList = () => {
     }
   };
 
+  // Fungsi untuk mengkonfirmasi penghapusan pengguna
   const handleDeleteConfirm = async () => {
     try {
       const response = await axiosInstance.delete(`/users/${selectedUser.id}`, {
@@ -70,6 +78,7 @@ const UserList = () => {
     }
   };
 
+  // Definisi kolom untuk DataTable
   const columns = [
     { field: "id", headerName: "User ID", width: 70 },
     { field: "name", headerName: "Name", width: 200 },

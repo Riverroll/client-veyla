@@ -2,18 +2,22 @@ import { useState } from "react";
 import createValidationSchema from "../../../utils/validationSchema";
 
 const AddModal = ({ isOpen, onClose, onSubmit, fields, options }) => {
+  // Menggunakan state untuk menyimpan data form dan error
   const [formData, setFormData] = useState(
-    fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {})
+    fields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {}) // Inisialisasi state formData dengan nilai kosong
   );
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); // Inisialisasi state untuk menyimpan error
 
+  // Membuat skema validasi menggunakan fungsi createValidationSchema
   const validationSchema = createValidationSchema(fields);
 
+  // Fungsi untuk menangani perubahan input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
+  // Fungsi untuk menangani pengiriman form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

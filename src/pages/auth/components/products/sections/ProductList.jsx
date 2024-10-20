@@ -8,12 +8,14 @@ import useFetchProducts from "../../../../hooks/useFetchProducts";
 import { toast } from "react-toastify";
 
 const ProductList = () => {
+  // Mengambil data produk, status loading, dan error dari custom hook
   const { products, loading, error, refetch } = useFetchProducts();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
+  // Fungsi untuk menambahkan produk baru
   const handleAddProduct = async (newProduct) => {
     try {
       const response = await axiosInstance.post("/products", newProduct, {
@@ -28,16 +30,19 @@ const ProductList = () => {
     }
   };
 
+  // Fungsi untuk mengedit produk yang dipilih
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setEditModalOpen(true);
   };
 
+  // Fungsi untuk menghapus produk
   const handleDelete = (product) => {
     setSelectedProduct(product);
     setDeleteModalOpen(true);
   };
 
+  // Fungsi untuk mengupdate produk
   const handleEditSubmit = async (updatedProduct) => {
     try {
       const response = await axiosInstance.put(

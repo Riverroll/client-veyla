@@ -6,51 +6,58 @@ import axiosInstance from "../../../utils/axiosInstance";
 import { toast } from "react-toastify";
 
 const CheckoutModal = ({ isOpen, onClose, total }) => {
-  const [step, setStep] = useState(1);
-  const [selectedTable, setSelectedTable] = useState("");
-  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
-  const [tables, setTables] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const dispatch = useDispatch();
+  const [step, setStep] = useState(1); // Mengatur langkah checkout, dimulai dari 1
+  const [selectedTable, setSelectedTable] = useState(""); // Menyimpan meja yang dipilih
+  const [isPaymentComplete, setIsPaymentComplete] = useState(false); // Status pembayaran
+  const [tables, setTables] = useState([]); // Menyimpan daftar meja
+  const [loading, setLoading] = useState(true); // Status loading
+  const [error, setError] = useState(null); // Menyimpan error jika ada
+  const dispatch = useDispatch(); // Mendapatkan fungsi dispatch dari Redux
 
+  // Mengambil item cart dan user ID dari Redux
   const cartItems = useSelector((state) => state.cart?.items) || [];
   const userId = useSelector((state) => state.user.User.id) || 1;
 
+  // Fungsi untuk mengambil daftar meja dari API
   const fetchTables = async () => {
     try {
-      setLoading(true);
-      const response = await axiosInstance.get("/tables");
-      setTables(response.data.data);
-      setLoading(false);
+      setLoading(true); // Mengatur loading menjadi true
+      const response = await axiosInstance.get("/tables"); // Mengambil data meja dari API
+      setTables(response.data.data); // Menyimpan data meja
+      setLoading(false); // Mengatur loading menjadi false
     } catch (error) {
       setError("Failed to fetch tables");
       setLoading(false);
     }
   };
 
+  // Mengambil meja ketika modal dibuka
   useEffect(() => {
     if (isOpen) {
-      fetchTables();
+      fetchTables(); // Memanggil fungsi fetchTables jika modal terbuka
     }
   }, [isOpen]);
 
+  // Mengatur langkah selanjutnya
   const handleProceed = () => {
     if (step === 1 && selectedTable) {
       setStep(2);
     }
   };
 
+  // Kembali ke langkah sebelumnya
   const handleBack = () => {
     if (step === 2) {
       setStep(1);
     }
   };
 
+  // Menyelesaikan pembayaran
   const handlePaymentComplete = async () => {
     try {
       setIsPaymentComplete(true);
 
+      // Payload untuk pengiriman pesanan
       const orderPayload = {
         user_id: userId,
         table_id: selectedTable,
@@ -61,14 +68,16 @@ const CheckoutModal = ({ isOpen, onClose, total }) => {
         })),
       };
 
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token"); // Mengambil token dari local storage
 
+      // Mengirimkan data pesanan ke API
       const response = await axiosInstance.post("/orders", orderPayload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
+      // Menangani respons dari server
       if (response.status === 200 || response.status === 201) {
         toast.success(response.data.message || "Pesanan berhasil dibuat!");
         dispatch(clearCart());

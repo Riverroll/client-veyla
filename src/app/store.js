@@ -6,9 +6,9 @@ import CartReducer from "../features/cart/cart";
 
 export default configureStore({
   reducer: {
-    user: UserReducer,
-    products: ProductReducer,
-    categories: CategoriesReducer,
-    cart: CartReducer, // Add this line
+    user: UserReducer, // Reducer untuk manajemen data pengguna
+    products: ProductReducer, // Reducer untuk manajemen data produk
+    categories: CategoriesReducer, // Reducer untuk manajemen data kategori
+    cart: CartReducer, // Reducer untuk manajemen data keranjang belanja
   },
 });

@@ -4,7 +4,11 @@ import ProductList from "./sections/ProductList";
 function ProductsAdmin() {
   return (
     <Layout>
+      {" "}
+      {/* Menggunakan Layout untuk membungkus konten admin */}
       <main className="flex flex-col gap-4 ">
+        {" "}
+        {/* Menggunakan Flexbox untuk tata letak */}
         <div className="p-4">
           <DashboardBanner
             title="Products Page"
@@ -12,7 +16,7 @@ function ProductsAdmin() {
           />
         </div>
         <div className="px-4">
-          <ProductList />
+          <ProductList /> {/* Komponen untuk menampilkan daftar produk */}
         </div>
       </main>
     </Layout>

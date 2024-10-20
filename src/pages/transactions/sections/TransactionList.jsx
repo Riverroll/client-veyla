@@ -6,15 +6,15 @@ import TransactionDetailModal from "../../../components/common/cards/Transaction
 import axiosInstance from "../../../utils/axiosInstance";
 
 const TransactionList = () => {
-  const { transactions, loading, error } = useFetchTransactions();
-  const [open, setOpen] = useState(false);
-  const [transactionDetails, setTransactionDetails] = useState(null);
+  const { transactions, loading, error } = useFetchTransactions(); // Mengambil data transaksi menggunakan hook
+  const [open, setOpen] = useState(false); // Mengatur status modal untuk menampilkan detail transaksi
+  const [transactionDetails, setTransactionDetails] = useState(null); // Menyimpan detail transaksi yang dipilih
 
   const handleOpen = async (id) => {
     try {
-      const response = await axiosInstance.get(`/orders/${id}`);
-      setTransactionDetails(response.data.data);
-      setOpen(true);
+      const response = await axiosInstance.get(`/orders/${id}`); // Mengambil detail transaksi berdasarkan ID
+      setTransactionDetails(response.data.data); // Menyimpan data transaksi ke state
+      setOpen(true); // Membuka modal detail transaksi
     } catch (error) {
       console.error("Error fetching transaction details:", error);
     }
@@ -25,6 +25,7 @@ const TransactionList = () => {
     setTransactionDetails(null);
   };
 
+  // Mendefinisikan kolom untuk DataTable
   const columns = [
     {
       field: "",

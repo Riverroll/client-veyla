@@ -4,14 +4,14 @@ const MakeAvailableModal = ({ isOpen, onClose, onSubmit, tableName }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await onSubmit();
-      onClose();
+      await onSubmit(); // Memanggil fungsi onSubmit untuk mengubah status tabel
+      onClose(); // Menutup modal setelah berhasil
     } catch (error) {
       console.error("Error making table available:", error);
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) return null; // Tidak merender modal jika tidak dalam keadaan terbuka
 
   return (
     <div

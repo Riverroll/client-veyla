@@ -12,7 +12,7 @@ function TransactionsAdmin() {
           />
         </div>
         <div className="px-4">
-          <TransactionList />
+          <TransactionList /> // Menampilkan daftar transaksi
         </div>
       </main>
     </Layout>

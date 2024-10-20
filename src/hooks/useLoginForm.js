@@ -2,10 +2,14 @@ import { useState } from "react";
 import * as Yup from "yup";
 
 const useLoginForm = () => {
+  // State untuk menyimpan nilai input email dan password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // State untuk menyimpan error validasi
   const [errors, setErrors] = useState({});
 
+  // Skema validasi menggunakan Yup
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
@@ -13,6 +17,7 @@ const useLoginForm = () => {
       .required("Required"),
   });
 
+  // Fungsi untuk memvalidasi input form
   const validate = async () => {
     try {
       await validationSchema.validate(
@@ -31,6 +36,7 @@ const useLoginForm = () => {
     }
   };
 
+  // Mengembalikan nilai dan fungsi yang diperlukan untuk mengelola form login
   return {
     email,
     setEmail,

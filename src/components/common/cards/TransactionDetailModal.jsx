@@ -1,6 +1,7 @@
 import { formatCurrency } from "../../../utils/format";
 
 const TransactionDetailModal = ({ open, onClose, transaction }) => {
+  // Jika modal tidak terbuka, kembalikan null (tidak merender apa-apa)
   if (!open) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

@@ -3,21 +3,26 @@ import { toast } from "react-toastify";
 import createValidationSchema from "../../../utils/validationSchema"; // Update the path accordingly
 
 const EditModal = ({ isOpen, onClose, onSubmit, initialData, fields }) => {
+  // Menggunakan useState untuk mengelola data form dan error
   const [formData, setFormData] = useState(initialData || {});
   const [errors, setErrors] = useState({});
 
+  // Membuat skema validasi berdasarkan fields yang diberikan
   const validationSchema = createValidationSchema(fields);
 
+  // Menggunakan useEffect untuk mengupdate state formData dan errors ketika initialData atau isOpen berubah
   useEffect(() => {
     setFormData(initialData || {});
     setErrors({});
   }, [initialData, isOpen]);
 
+  // Fungsi untuk menangani perubahan input
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
+  // Fungsi untuk menyimpan data
   const handleSave = async (e) => {
     e.preventDefault();
     try {

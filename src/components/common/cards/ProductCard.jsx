@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../features/cart/cart";
 
 const ProductCard = ({ product }) => {
-  const location = useLocation();
-  const isAdmin = location.pathname.includes("admin");
-  const dispatch = useDispatch();
+  const location = useLocation(); // Mendapatkan informasi lokasi saat ini
+  const isAdmin = location.pathname.includes("admin"); // Memeriksa apakah pengguna saat ini adalah admin
+  const dispatch = useDispatch(); // Mendapatkan fungsi dispatch untuk mengirim aksi ke Redux store
 
+  // Fungsi untuk menambahkan produk ke keranjang
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    dispatch(addToCart(product)); // Mengirim aksi addToCart dengan produk yang dipilih
   };
 
   return (
